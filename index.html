@@ -2,15 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IFC Viewer</title>
-  <style>
-    body, html { margin: 0; height: 100%; }
-    #viewer-container { width: 100vw; height: 100vh; }
-  </style>
+  <title>IFC Viewer</title>
+  <style>html,body{margin:0;height:100%}#app{width:100vw;height:100vh}</style>
 </head>
 <body>
-  <div id="viewer-container"></div>
-  <script type="module" src="/src/main.js"></script>
+  <div id="app"></div>
+
+  <!-- three.js -->
+  <script type="module" src="https://unpkg.com/three@0.161.0/build/three.module.js"></script>
+
+  <!-- thatopen/components (ESM bundle trên unpkg) -->
+  <script type="module">
+    import * as OBC from "https://unpkg.com/@thatopen/components/dist/index.js";
+
+    const PROXY = "https://my-ifc-project.onrender.com";   // URL proxy
+    const file = new URLSearchParams(location.search).get('file');
+    if(!file){ alert("Thiếu ?file="); throw 0; }
+
+    const container = document.getElementById('app');
+    const comps = new OBC.Components();
+    comps.add(OBC.SimpleScene);
+    comps.add(OBC.SimpleCamera);
+    comps.add(OBC.SimpleRenderer);
+    comps.add(OBC.FragmentsManager);
+    comps.add(OBC.IfcLoader);
+    await comps.init();
+
+    const scene   = comps.get(OBC.SimpleScene);
+    const camera  = comps.get(OBC.SimpleCamera);
+    const loader  = comps.get(OBC.IfcLoader);
+
+    scene.setup();
+    camera.controls.setLookAt(10,10,10,0,0,0);
+
+    await loader.setup();
+    const res  = await fetch(`${PROXY}/download-ifc?file=${encodeURIComponent(file)}`);
+    const data = new Uint8Array(await res.arrayBuffer());
+    const model = await loader.load(data);
+    scene.three.add(model);
+    camera.controls.fitToSphere();
+  </script>
 </body>
 </html>
