@@ -1,6 +1,10 @@
 {
   "name": "ifc-viewer",
   "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -8,5 +12,8 @@
   },
   "dependencies": {
     "vite": "^5.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^1.0.2"
   }
 }
