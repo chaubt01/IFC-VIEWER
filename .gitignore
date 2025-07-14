@@ -11,3 +11,9 @@ dist/
 *.ntvs*
 *.njsproj
 *.sln
+
+# Environment variables
+.env
+*.ntvs*
+*.njsproj
+*.sln

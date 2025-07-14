@@ -1,7 +1,7 @@
 import * as OBC from "/libs/components.js";
 
 async function startViewer() {
-  const PROXY = "https://my-ifc-project.onrender.com";
+  const PROXY = import.meta.env.VITE_PROXY_URL;
   const file = new URLSearchParams(location.search).get('file');
   if (!file) {
     alert("Thiếu ?file="); return;
