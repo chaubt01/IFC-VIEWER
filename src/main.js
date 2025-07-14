@@ -1,4 +1,4 @@
-import * as OBC from "https://unpkg.com/@thatopen/components/dist/index.js";
+import * as OBC from "/libs/components.js";
 
 async function startViewer() {
   const PROXY = "https://my-ifc-project.onrender.com";
