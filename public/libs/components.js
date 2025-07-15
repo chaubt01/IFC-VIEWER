@@ -74,4 +74,4 @@ const OBC = {
   }
 };
 
-export * from OBC;
+export default OBC;

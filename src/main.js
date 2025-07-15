@@ -1,5 +1,5 @@
 
-import * as OBC from "/libs/components.js";
+import OBC from "../public/libs/components.js";
 
 (async function() {
   const container = document.getElementById('app');
