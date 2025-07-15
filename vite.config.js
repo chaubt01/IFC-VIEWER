@@ -1,16 +1,12 @@
 export default {
   build: {
     target: 'esnext',
-    outDir: 'dist',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'thatopen': ['@thatopen/components']
-        }
-      }
-    }
+    outDir: 'dist'
+  },
+  server: {
+    cors: true
   },
   optimizeDeps: {
-    include: ['@thatopen/components']
+    exclude: ['three', 'web-ifc', 'web-ifc-three', 'web-ifc-viewer']
   }
 }
