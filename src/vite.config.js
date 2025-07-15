@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   build: {
-    target: 'esnext',       // ✅ Cho phép top-level await
-    outDir: 'dist'
+    target: 'esnext', // để hỗ trợ top-level await
   }
 });
