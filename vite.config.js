@@ -1,15 +1,16 @@
 export default {
   build: {
     target: 'esnext',
-    outDir: 'dist'
-  },
-  server: {
-    cors: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'thatopen': ['@thatopen/components']
+        }
+      }
     }
   },
   optimizeDeps: {
-    exclude: ['@thatopen/components']
+    include: ['@thatopen/components']
   }
 }

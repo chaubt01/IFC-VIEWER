@@ -1,4 +1,4 @@
-import * as OBC from "/libs/components.js";
+import * as OBC from "@thatopen/components";
 
 async function startViewer() {
   const PROXY = import.meta.env.VITE_PROXY_URL;
